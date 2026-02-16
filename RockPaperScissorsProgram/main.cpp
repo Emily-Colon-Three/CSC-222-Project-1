@@ -39,8 +39,7 @@ int main()
 
     } while (gameEnded == 0);
 
-    cout << humanScore << endl;
-    cout << cpuScore << endl;
+    finalResults(humanScore, cpuScore);
 
     return 0;
 }
@@ -122,16 +121,44 @@ int determineWinner(int humanMove)
 
     int cpuMove = dist(engine);
 
-    if (humanMove == cpuMove)
+    if ((humanMove == ROCK && cpuMove == SCISSORS) || (humanMove == PAPER && cpuMove == ROCK) || (humanMove == SCISSORS && cpuMove == PAPER))
     {
-        return 0; // Draw
+        return 1; // Human wins
     }
-    else if ((humanMove == ROCK && cpuMove == SCISSORS) || (humanMove == PAPER && cpuMove == ROCK) || (humanMove == SCISSORS && cpuMove == PAPER))
+    else if ((humanMove == ROCK && cpuMove == PAPER) || (humanMove == PAPER && cpuMove == SCISSORS) || (humanMove == SCISSORS && cpuMove == ROCK))
     {
-        return 1; // Human win
+        return 2; // CPU wins
     }
-    else // If it's not a draw and the human player hasn't won, it leaves only bot victory as the outcome
+    else
     {
-        return 2; // CPU win
+        return 0; // DRAW
+    }
+}
+
+/*
+    Summary: Displays the final results of the RPS tournament by using the final scores for the human and computer player.
+    Parameters: int human represents the user's score, while int cpu represents the computer player's score.
+    Return: None
+    Preconditions: Both scores should be accurate, prior errors carry over.
+    Postconditions: cout is used to display the results of the game. endl is used twice.
+*/
+void finalResults(int human, int cpu)
+{
+    cout << "TOURNAMENT RESULTS:\n";
+
+    cout << "User Score: " << human << endl;
+    cout << "CPU Score: " << cpu << endl;
+
+    if (human > cpu)
+    {
+        cout << "User has won the tournament!\n";
+    }
+    else if (cpu > human)
+    {
+        cout << "User has lost tournament to CPU...\n";
+    }
+    else // Draw
+    {
+        cout << "The tournament as a whole is a Draw. Neither player has won.\n";
     }
 }
