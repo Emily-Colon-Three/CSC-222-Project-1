@@ -1,0 +1,7 @@
+# depslib dependency file v1.0
+1771301215 source:/home/paulmichaelolsen/VPCC Assignnments/CSC 222/Project 1/GradeBookProgram/main.cpp
+	<iostream>
+	<fstream>
+	<sstream>
+	<iomanip>
+
